@@ -12,6 +12,17 @@
   <% end %>
 
   <div class="actions">
+    <% if @image.file? %>
+      <div class="form-group">
+        <p>Current avatar</p>
+        <%= image_tag( @image.file.url ) %>
+      </div>
+    <% end %>
+    <%= f.label :file %>
+    <%= f.file_field :file %>
+    <%= f.hidden_field :file_cache %>
+
+
     <%= f.submit %>
   </div>
 <% end %>
