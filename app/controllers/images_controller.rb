@@ -25,6 +25,10 @@ class ImagesController < ApplicationController
   # POST /images.json
   def create
     @image = Image.new(image_params)
+    if @image.data_uri.length >= 1
+      @image.file_data_uri = @image.data_uri
+      @image.data_uri = ""
+    end
 
     respond_to do |format|
       if @image.save
@@ -69,6 +73,6 @@ class ImagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def image_params
-      params.require(:image).permit(:file)
+      params.require(:image).permit(:file, :data_uri)
     end
 end

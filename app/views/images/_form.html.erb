@@ -11,6 +11,22 @@
     </div>
   <% end %>
 
+  <div id="my_camera" style="width:320px; height:240px;"></div>
+  <div id="my_result"></div>
+
+  <script language="JavaScript">
+      Webcam.attach( '#my_camera' );
+
+      function take_snapshot() {
+          Webcam.snap( function(data_uri) {
+              document.getElementById('my_result').innerHTML = '<img src="'+data_uri+'"/>';
+              $('#data-uri').val(data_uri);
+          } );
+      }
+  </script>
+
+  <a href="javascript:void(take_snapshot())">Take Snapshot</a>
+
   <div class="actions">
     <% if @image.file? %>
       <div class="form-group">
@@ -18,6 +34,7 @@
         <%= image_tag( @image.file.url ) %>
       </div>
     <% end %>
+    <%= f.hidden_field :data_uri, :id => 'data-uri' %>
     <%= f.label :file %>
     <%= f.file_field :file %>
     <%= f.hidden_field :file_cache %>

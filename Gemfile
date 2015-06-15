@@ -15,7 +15,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'fog'
 gem 'figaro'
-
+gem 'carrierwave-data-uri'
 
 group :development, :test do
   gem 'byebug'
