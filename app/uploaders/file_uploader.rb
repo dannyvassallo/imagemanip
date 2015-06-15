@@ -23,9 +23,9 @@ class FileUploader < CarrierWave::Uploader::Base
 
   def overlay
     manipulate! format: "jpg" do |source|
-      overlay_path = Rails.root.join("app/assets/images/homer_overlay.gif")
+      overlay_path = Rails.root.join("app/assets/images/picture_frame.png")
       overlay = Magick::Image.read(overlay_path).first
-      source = source.resize_to_fill(320, 320)
+      source = source.resize_to_fill(640, 539)
       source.composite!(overlay, 0, 0, Magick::OverCompositeOp)
     end
   end
