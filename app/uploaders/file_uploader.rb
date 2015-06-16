@@ -1,5 +1,6 @@
 class FileUploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
+  include ::CarrierWave::Backgrounder::Delay
 
   # Include the Sprockets helpers for Rails 3.1+ asset pipeline compatibility:
 
@@ -21,7 +22,8 @@ class FileUploader < CarrierWave::Uploader::Base
 
   process :overlay
 
-  Text = "test"
+  image = Image.last
+  Text = image.text
 
   def overlay
     manipulate! format: "jpg" do |source|
