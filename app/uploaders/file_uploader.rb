@@ -44,5 +44,4 @@ class FileUploader < CarrierWave::Uploader::Base
       source
     end
   end
-  p "test #{File}"
 end

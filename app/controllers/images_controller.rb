@@ -27,7 +27,7 @@ class ImagesController < ApplicationController
     @image = Image.new(image_params)
     if @image.data_uri.length >= 1
       @image.file_data_uri = @image.data_uri
-      @image.data_uri = ""
+      @image.data_uri = nil
     end
 
     respond_to do |format|
