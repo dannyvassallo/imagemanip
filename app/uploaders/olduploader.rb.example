@@ -21,26 +21,12 @@ class FileUploader < CarrierWave::Uploader::Base
 
   process :overlay
 
-  Text = "test"
-
   def overlay
     manipulate! format: "jpg" do |source|
+      overlay_path = Rails.root.join("app/assets/images/picture_frame.png")
+      overlay = Magick::Image.read(overlay_path).first
       source = source.resize_to_fill(640, 539)
-      text = Magick::Draw.new
-      text.font_family = 'helvetica'
-      text.pointsize = 52
-      text.gravity = Magick::CenterGravity
-      text.annotate(source, 0,0,2,2, Text) {
-        self.fill = 'black'
-      }
-      text.annotate(source, 0,0,-1.5,-1.5, Text) {
-        self.fill = 'black'
-      }
-      text.annotate(source, 0,0,0,0, Text) {
-        self.fill = 'white'
-      }
-      source
+      source.composite!(overlay, 0, 0, Magick::OverCompositeOp)
     end
   end
-  p "test #{File}"
 end
