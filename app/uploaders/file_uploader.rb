@@ -19,11 +19,11 @@ class FileUploader < CarrierWave::Uploader::Base
     %w(jpg jpeg gif png)
   end
 
-
   process :overlay
 
-  image = Image.last
-  Text = image.text
+  def full_filename (for_file = model.image.file)
+    "comped-image-#{model.id}.jpg"
+  end
 
   def overlay
     manipulate! format: "jpg" do |source|
@@ -32,13 +32,13 @@ class FileUploader < CarrierWave::Uploader::Base
       text.font_family = 'helvetica'
       text.pointsize = 52
       text.gravity = Magick::CenterGravity
-      text.annotate(source, 0,0,2,2, Text) {
+      text.annotate(source, 0,0,2,2, "#{model.text}") {
         self.fill = 'black'
       }
-      text.annotate(source, 0,0,-1.5,-1.5, Text) {
+      text.annotate(source, 0,0,-1.5,-1.5, "#{model.text}") {
         self.fill = 'black'
       }
-      text.annotate(source, 0,0,0,0, Text) {
+      text.annotate(source, 0,0,0,0, "#{model.text}") {
         self.fill = 'white'
       }
       source
