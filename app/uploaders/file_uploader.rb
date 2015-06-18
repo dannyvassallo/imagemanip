@@ -21,10 +21,6 @@ class FileUploader < CarrierWave::Uploader::Base
 
   process :overlay
 
-  def full_filename (for_file = model.image.file)
-    "comped-image-#{model.id}.jpg"
-  end
-
   def overlay
     manipulate! format: "jpg" do |source|
       source = source.resize_to_fill(640, 539)

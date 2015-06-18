@@ -1,5 +1,7 @@
 class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy]
+  after_action :reset_uri, only: [:update]
+
 
   # GET /images
   # GET /images.json
@@ -25,10 +27,7 @@ class ImagesController < ApplicationController
   # POST /images.json
   def create
     @image = Image.new(image_params)
-    if @image.data_uri.length >= 1
-      @image.file_data_uri = @image.data_uri
-      @image.data_uri = nil
-    end
+    @image.file_data_uri = @image.data_uri
 
     respond_to do |format|
       if @image.save
@@ -63,6 +62,11 @@ class ImagesController < ApplicationController
       format.html { redirect_to images_url, notice: 'Image was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def reset_uri
+    @image.file_data_uri = @image.data_uri
+    @image.save!
   end
 
   private
