@@ -15,6 +15,15 @@
   <div id="my_result"></div>
 
   <script language="JavaScript">
+      Webcam.set({
+          dest_width: 1280,
+          dest_height: 720,
+          jpeg_quality: 90,
+          force_flash: false,
+          flip_horiz: true,
+          fps: 45
+      });
+
       Webcam.attach( '#my_camera' );
 
       function take_snapshot() {
