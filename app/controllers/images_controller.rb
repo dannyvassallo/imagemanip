@@ -1,5 +1,6 @@
 class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy]
+  after_action :reset_uri, only: [:update]
 
   # GET /images
   # GET /images.json
@@ -25,6 +26,7 @@ class ImagesController < ApplicationController
   # POST /images.json
   def create
     @image = Image.new(image_params)
+    @image.file_data_uri = @image.data_uri
 
     respond_to do |format|
       if @image.save
@@ -61,6 +63,17 @@ class ImagesController < ApplicationController
     end
   end
 
+  def reset_uri
+    @image.save!
+    if @image.file_changed?
+      p "Image uri changed"
+    else
+      p "Image uri NOT changed"
+    end
+    # @image.file_data_uri = @image.data_uri
+    # @image.save!
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_image
@@ -69,6 +82,6 @@ class ImagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def image_params
-      params.require(:image).permit(:file)
+      params.require(:image).permit(:file, :data_uri, :text)
     end
 end
