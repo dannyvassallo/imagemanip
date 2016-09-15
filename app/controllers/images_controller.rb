@@ -2,7 +2,6 @@ class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy]
   after_action :reset_uri, only: [:update]
 
-
   # GET /images
   # GET /images.json
   def index
@@ -65,8 +64,14 @@ class ImagesController < ApplicationController
   end
 
   def reset_uri
-    @image.file_data_uri = @image.data_uri
     @image.save!
+    if @image.file_changed?
+      p "FUCK YEAH"
+    else
+      p "NOPE"
+    end
+    # @image.file_data_uri = @image.data_uri
+    # @image.save!
   end
 
   private
