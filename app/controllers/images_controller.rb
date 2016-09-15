@@ -66,9 +66,9 @@ class ImagesController < ApplicationController
   def reset_uri
     @image.save!
     if @image.file_changed?
-      p "FUCK YEAH"
+      p "Image uri changed"
     else
-      p "NOPE"
+      p "Image uri NOT changed"
     end
     # @image.file_data_uri = @image.data_uri
     # @image.save!
