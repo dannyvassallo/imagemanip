@@ -4,6 +4,14 @@ This is a simple implementation of creating a composite using a webcam photo and
 
 ####First Run
 
+• You will need imagemagick. You can install it on a mac using homebrew:
+
+```shell
+$ brew install imagemagick
+```
+
+• Copy the project and run the setup:
+
 ```shell
 $ git clone https://github.com/dannyvassallo/imagemanip && cd imagemanip
 $ bundle install
