@@ -35,4 +35,4 @@ Save your new `application.yml` with your credentials.
 $ foreman s #start workers and server
 ```
 
-Visit `localhost:3000/images` in your browser.
+Visit `localhost:3000` in your browser.
