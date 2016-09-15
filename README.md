@@ -5,10 +5,10 @@ This is a simple implementation of creating a composite using a webcam photo and
 ####First Run
 
 ```shell
-git clone https://github.com/dannyvassallo/imagemanip && cd imagemanip
-bundle install
-rake db:migrate
-gem install foreman
+$ git clone https://github.com/dannyvassallo/imagemanip && cd imagemanip
+$ bundle install
+$ rake db:migrate
+$ gem install foreman
 ```
 
 • Goto `config > application.yml.example`
@@ -32,7 +32,7 @@ Save your new `application.yml` with your credentials.
 ####Starting The App
 
 ```shell
-foreman s #start workers and server
+$ foreman s #start workers and server
 ```
 
 Visit `localhost:3000/images` in your browser.
